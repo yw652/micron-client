@@ -4,6 +4,11 @@ Client for interaction between micron-based microservices
 
 `$ npm install --save micron-client`
 
+# TODO
+
+- use `parameters` rather than `reqOpts`
+- support `/` as a primary delimeter
+
 # Key
 
 - [Usage](#usage)
