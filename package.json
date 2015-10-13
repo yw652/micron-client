@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/johnhof/micron-client/issues"
   },
-  "homepage": "https://github.com/johnhof/micron-client#readme"
+  "homepage": "https://github.com/johnhof/micron-client#readme",
+  "dependencies": {
+    "co-request": "^1.0.0",
+    "string-template": "^0.2.1"
+  }
 }
