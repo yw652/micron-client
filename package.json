@@ -1,0 +1,26 @@
+{
+  "name": "micron-client",
+  "version": "0.0.1",
+  "description": "Client for interaction between micron-based microservices",
+  "main": "lib",
+  "author": "John Hofrichter",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha ./tests/* --compilers js:mocha-traceur"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnhof/micron-client.git"
+  },
+  "keywords": [
+    "micron",
+    "microservice"
+  ],
+  "engines": {
+    "node": ">=4.1.2"
+  },
+  "bugs": {
+    "url": "https://github.com/johnhof/micron-client/issues"
+  },
+  "homepage": "https://github.com/johnhof/micron-client#readme"
+}
