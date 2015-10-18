@@ -24,7 +24,9 @@ let micron = require('micron-client');
 let client = micron({
   userService : {
     micron: 'zeromq', // specify zeromq as the communication method
+    // OR
     micron: 'http', // specify HTTP as the communication method
+
     prefix: 'v1', // prefix all request url's
     host: '127.0.0.1', /// host of the service
     port: 8001 // port of the service
@@ -32,8 +34,6 @@ let client = micron({
 });
 
 let result = yield client.userService.post('user/create', {
-  first_name: 'test',
-  last_name: 'tester',
   email: 'test@tester.com',
   password: 'Tester@1'
 });
