@@ -1,8 +1,8 @@
 # Micron Client
 
-Client for interaction between micron-based microservices.
+Client for interaction between [micron](https://github.com/johnhof/micron) microservices.
 
-The goal of micron is to simplify construction and communication between micro-services, regardless of the communication method. The client and service currently support communication over [REST/HTTP](http://www.restapitutorial.com/lessons/whatisrest.html), [ØMQ](http://zeromq.org/).
+The goal of micron is to simplify construction and communication between micro-services, regardless of the communication method. The client and service currently support communication over [REST/HTTP](http://www.restapitutorial.com/lessons/whatisrest.html), [ØMQ](http://zeromq.org/), and others.
 
 `$ npm install --save micron-client`
 
@@ -80,7 +80,7 @@ yield client.someMicronService.request({
 - Wraps [.request](#request)
 - Takes arguments `(path, opts)`
   - `path`
-    - Prefixed with the `host`, `port`, and `basePath` from the resource config
+    - Prefixed with the `host`, `port`, and `prefix` from the resource config
     - Supports templating with `{KEY}` against `opts.parameters`
   - `opts`
     - If no `parameters`, `body`, `qs`, or `headers` param exists, the object will be set as the body/form
@@ -107,7 +107,7 @@ yield client.someMicronService.post('/foo/{foo_id}', {
 - Wraps [.request](#request)
 - Takes arguments `(path, opts)`
   - `path`
-    - Prefixed with the `host`, `port`, and `basePath` from the resource config
+    - Prefixed with the `host`, `port`, and `prefix` from the resource config
     - Supports templating with `{KEY}` against `opts.parameters`
   - `opts`
     - If no `parameters`, `body`, `qs`, or `headers` param exists, the object will be set as the body/form
@@ -132,7 +132,7 @@ yield client.someMicronService.get('/foo/{foo_id}', {
 - Wraps [.request](#request)
 - Takes arguments `(path, opts)`
   - `path`
-    - Prefixed with the `host`, `port`, and `basePath` from the resource config
+    - Prefixed with the `host`, `port`, and `prefix` from the resource config
     - Supports templating with `{KEY}` against `opts.parameters`
   - `opts`
     - If no `parameters`, `body`, `qs`, or `headers` param exists, the object will be set as the body/form
@@ -159,7 +159,7 @@ yield client.someMicronService.put('/foo/{foo_id}', {
 - Wraps [.request](#request)
 - Takes arguments `(path, opts)`
   - `path`
-    - Prefixed with the `host`, `port`, and `basePath` from the resource config
+    - Prefixed with the `host`, `port`, and `prefix` from the resource config
     - Supports templating with `{KEY}` against `opts.parameters`
   - `opts`
     - If no `parameters`, `body`, `qs`, or `headers` param exists, the object will be set as the body/form
