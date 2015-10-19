@@ -13,6 +13,12 @@ The goal of micron is to simplify construction and communication between micro-s
 # Key
 
 - [Usage](#usage)
+- [Operations](#operations)
+  - [.request](#request)
+  - [.create/.post](#create/post)
+  - [.read/.get](#read/get)
+  - [.update/.put](#update)
+  - [.destroy/.delete](#destroy/delete)
 - [Contributing](#contibuting)
 - [Authors](#authors)
 
@@ -37,36 +43,146 @@ let result = yield client.userService.post('user/create', {
   email: 'test@tester.com',
   password: 'Tester@1'
 });
-
 ```
 
-# Contributing
+# Operations
 
-Add new clients to the `./lib/clients` directory as an independant file. Each client should follow this structure
+## .request
+
+- Follows the object structure of the [request](https://www.npmjs.com/package/request#request-options-callback) module's base request builder
+  - The only major change is that the url and host are pulled from the config. The `opts.path` method should be used instead
+- All other operations are simply wrappers of this function
+- Important notes
+  - `opts.path` should be used instead of `opts.url` (the host and port are added from the resource config)
+  - No `opts.method` defaults to `GET`
+  - the `opts.path` string can use templates using keys on from the `opts.parameters` object
+  - `form` is aliased as `body`
+  - All requests default to type JSON
 
 ```javascript
-'use strict';
-
-module.exports = function (config) {
-
-  // Core request
-  client.request = function (opts) { /* MUST RETURN A PROMISE */ }
-
-  // Create/Post
-  client.create = client.post = function (path, opts) { /* MUST RETURN A PROMISE */ }
-
-  // Read/Get
-  client.read = client.get = function (path, opts) { /* MUST RETURN A PROMISE */ }
-
-  // Update/Put
-  client.update = client.put = function (path, opts) { /* MUST RETURN A PROMISE */ }
-
-  // Destroy/Delete
-  client.create = client.put = function (path, opts) { /* MUST RETURN A PROMISE */ }
-
-  return client;
-};
+yield client.someMicronService.request({
+  method: 'post',
+  path: '/foo/{foo_id}',
+  parameters: {
+    foo_id: 'FooId12345'
+  },
+  body: {
+    foo_property: 'bar'
+  },
+  qs: {
+    foo_query: 'bar'
+  }
+});
 ```
+
+## .create/.post
+
+- Wraps [.request](#request)
+- Takes arguments `(path, opts)`
+  - `path`
+    - Prefixed with the `host`, `port`, and `basePath` from the resource config
+    - Supports templating with `{KEY}` against `opts.parameters`
+  - `opts`
+    - If no `parameters`, `body`, `qs`, or `headers` param exists, the object will be set as the body/form
+
+```javascript
+yield client.someMicronService.post('/foo/FooId12345', {
+  foo_property: 'bar'
+});
+
+// OR
+
+yield client.someMicronService.post('/foo/{foo_id}', {
+  parameters: {
+    foo_id: 'FooId12345'
+  },
+  body: {
+    foo_property: 'bar'
+  }
+});
+```
+
+## .read/.get
+
+- Wraps [.request](#request)
+- Takes arguments `(path, opts)`
+  - `path`
+    - Prefixed with the `host`, `port`, and `basePath` from the resource config
+    - Supports templating with `{KEY}` against `opts.parameters`
+  - `opts`
+    - If no `parameters`, `body`, `qs`, or `headers` param exists, the object will be set as the body/form
+
+```javascript
+yield client.someMicronService.get('/foo/FooId12345?foo_query=bar');
+
+// OR
+
+yield client.someMicronService.get('/foo/{foo_id}', {
+  parameters: {
+    foo_id: 'FooId12345'
+  },
+  qs: {
+    foo_query: 'bar'
+  }
+});
+```
+
+## .update/.put
+
+- Wraps [.request](#request)
+- Takes arguments `(path, opts)`
+  - `path`
+    - Prefixed with the `host`, `port`, and `basePath` from the resource config
+    - Supports templating with `{KEY}` against `opts.parameters`
+  - `opts`
+    - If no `parameters`, `body`, `qs`, or `headers` param exists, the object will be set as the body/form
+
+```javascript
+yield client.someMicronService.put('/foo/FooId12345', {
+  foo_property: 'bar'
+});
+
+// OR
+
+yield client.someMicronService.put('/foo/{foo_id}', {
+  parameters: {
+    foo_id: 'FooId12345'
+  },
+  body: {
+    foo_property: 'bar'
+  }
+});
+```
+
+## .destroy/.delete
+
+- Wraps [.request](#request)
+- Takes arguments `(path, opts)`
+  - `path`
+    - Prefixed with the `host`, `port`, and `basePath` from the resource config
+    - Supports templating with `{KEY}` against `opts.parameters`
+  - `opts`
+    - If no `parameters`, `body`, `qs`, or `headers` param exists, the object will be set as the body/form
+
+```javascript
+yield client.someMicronService.delete('/foo/FooId12345', {
+  foo_property: 'bar'
+});
+
+// OR
+
+yield client.someMicronService.delete('/foo/{foo_id}', {
+  parameters: {
+    foo_id: 'FooId12345'
+  },
+  body: {
+    foo_property: 'bar'
+  }
+});
+```
+# Contributing
+
+Add new clients to the `./lib/clients` directory as an independant file. Each client should support all operations above
 
 #### Requirements
 
