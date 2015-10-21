@@ -8,9 +8,7 @@ The goal of micron is to simplify construction and communication between micro-s
 
 `$ npm install --save micron-client`
 
-# TODO
-
-- support `/` as a primary delimeter
+<img src="http://i.imgur.com/fm46NVd.png?1" width="400">
 
 # Key
 
