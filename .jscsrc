@@ -58,7 +58,6 @@
       "allExcept": ["inProperties"]
     },
     "requireSemicolons": true,
-    "safeContextKeyword": ["self", "ctx", "_this", "_self"],
     "validateLineBreaks": "LF",
     "validateQuoteMarks": "'",
     "validateIndentation": 2
