@@ -27,5 +27,10 @@
     "request": "^2.65.0",
     "uuid": "^2.0.1",
     "zmq": "^2.13.0"
+  },
+  "devDependencies": {
+    "co-mocha": "^1.1.2",
+    "mocha": "^2.3.3",
+    "mocha-traceur": "^2.1.0"
   }
 }
