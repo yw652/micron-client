@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/l/express.svg)](https://github.com/johnhof/micron-client/blob/master/LICENSE)  [![Dependencies](https://img.shields.io/david/johnhof/micron-client.svg)](https://david-dm.org/johnhof/micron-client) [![Join the chat at https://gitter.im/johnhof/micron-client](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/johnhof/micron-client?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Client for interaction between [micron](https://github.com/johnhof/micron-client) microservices.
+Client for interaction between [micron](https://github.com/johnhof/micron) microservices.
 
 The goal of micron is to simplify construction and communication between micro-services, regardless of the communication method. The client and service currently support communication over [REST/HTTP](http://www.restapitutorial.com/lessons/whatisrest.html), [ØMQ](http://zeromq.org/), and others.
 
