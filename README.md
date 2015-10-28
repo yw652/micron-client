@@ -13,6 +13,8 @@ The goal of micron is to simplify construction and communication between micro-s
 # Key
 
 - [Usage](#usage)
+  - [Spot](#spot)
+  - [Middleware](#middleware)
 - [Operations](#operations)
   - [.request](#request)
   - [.create/.post](#create/post)
@@ -23,6 +25,10 @@ The goal of micron is to simplify construction and communication between micro-s
 - [Authors](#authors)
 
 # Usage
+
+## Spot
+
+- should be used in a shared fashion to prevernt constant socket connection overhead
 
 ```javascript
 let micron = require('micron-client');
@@ -39,10 +45,36 @@ let client = micron({
   }
 });
 
-let result = yield client.userService.post('user/create', {
+let result = yield client.userService.post('user/create', {ß
   email: 'test@tester.com',
   password: 'Tester@1'
 });
+```
+
+## Middleware
+
+- Allows sockets to stay open for server duration
+
+```javascript
+let micron = require('micron-client');
+let config = require('./services.json');
+
+// koa
+
+let koa = require('koa');
+let koaApp = koa();
+
+koaApp.use(micron.middleware.koa());
+koaApp.listen(8000)
+
+
+// express
+
+Â express = require('express');
+let expressApp = express();
+
+expressApp.use(micron.middleware.express());
+expressApp.listen(8000)
 ```
 
 # Operations
