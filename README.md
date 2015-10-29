@@ -28,7 +28,7 @@ The goal of micron is to simplify construction and communication between micro-s
 
 ## Spot
 
-- should be used in a shared fashion to prevernt constant socket connection overhead
+- should be used in a shared fashion to prevent constant socket connection overhead
 
 ```javascript
 let micron = require('micron-client');
@@ -211,6 +211,21 @@ yield client.someMicronService.delete('/foo/{foo_id}', {
     foo_property: 'bar'
   }
 });
+```
+
+## .status
+
+- Performs a `GET /status` on the service
+- The service will perform a `GET /status` on all of its dependent services
+- All ternary dependencies will be ignored to prevent a loop back  
+- Calling `Status` directly on micron-client will get the status of all registered services
+
+```javascript
+// singular status
+yield client.someMicronService.status();
+
+// all status's
+yield client.status();
 ```
 # Contributing
 
