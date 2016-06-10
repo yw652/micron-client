@@ -1,6 +1,6 @@
 {
   "name": "micron-client",
-  "version": "1.1.4",
+  "version": "2.0.0",
   "description": "Client for interaction between micron-based microservices",
   "main": "lib",
   "author": "John Hofrichter",
