@@ -219,8 +219,8 @@ yield client.someMicronService.delete('/foo/{foo_id}', {
 - The service will perform a `GET /status` on all of its dependent services
 - All ternary dependencies will be ignored to prevent a loop back  
 - Calling `Status` directly on micron-client will get the status of all registered services
-- Takes arguments [`timeout`]
-  - `timeout`
+- Takes arguments [`opts`]
+  - `opts.timeout`
     - timeout in milliseconds for each status request
 
 ```javascript
